@@ -1,9 +1,12 @@
 #include "fann.h"
 
+
+
+
 int main()
 {
-	const char learn_file_name = "learn.data";
-	const char net_file_name = "tde.net";
+	const char * learn_file_name = "learn.data";
+	const char * net_file_name = "tde.net";
     unsigned int layers[3] = {3072, 5000, 43};
     const float desired_error = (const float) 0.001;
     const unsigned int max_epochs = 5000;

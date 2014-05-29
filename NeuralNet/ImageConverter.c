@@ -26,7 +26,7 @@ struct dirList
 	struct dirList * nextDir;
 };
 
-int main()
+int main2()
 {
 	struct featureList * flRoot;
   	flRoot = malloc(sizeof(struct featureList));

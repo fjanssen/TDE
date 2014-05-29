@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lopencv_core -lnetpbm -lopencv_imgproc -lopencv_highgui
+LIBS := -lfann -lnetpbm
 

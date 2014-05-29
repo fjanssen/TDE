@@ -28,7 +28,7 @@ all: NeuralNet
 NeuralNet: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross GCC Linker'
-	gcc -L/usr/local/lib -L/lib -o "NeuralNet" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/data/home/race/TDE/NeuralNet/lib" -o "NeuralNet" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
