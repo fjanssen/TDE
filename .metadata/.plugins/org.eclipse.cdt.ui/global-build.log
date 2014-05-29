@@ -1,54 +1,8 @@
-13:21:53 **** Build of configuration Debug for project NeuralNet ****
-make all 
-Building file: ../ImageConverter.c
-Invoking: Cross GCC Compiler
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-../ImageConverter.c:1:17: fatal error: ppm.h: No such file or directory
-compilation terminated.
-make: *** [ImageConverter.o] Error 1
-13:23:30 **** Incremental Build of configuration Debug for project NeuralNet ****
-make all 
-Building file: ../ImageConverter.c
-Invoking: Cross GCC Compiler
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-../ImageConverter.c: In function ‘imageToFeature_netpbm’:
-../ImageConverter.c:165:2: error: unknown type name ‘pixval’
-../ImageConverter.c:166:2: error: unknown type name ‘pixel’
-../ImageConverter.c:167:2: error: unknown type name ‘pixel’
-../ImageConverter.c:168:2: error: unknown type name ‘pixel’
-../ImageConverter.c:177:2: warning: implicit declaration of function ‘ppm_readppm’ [-Wimplicit-function-declaration]
-../ImageConverter.c:177:11: warning: assignment makes pointer from integer without a cast [enabled by default]
-../ImageConverter.c:189:26: error: request for member ‘r’ in something not a structure or union
-../ImageConverter.c:191:26: error: request for member ‘g’ in something not a structure or union
-../ImageConverter.c:193:26: error: request for member ‘b’ in something not a structure or union
-../ImageConverter.c:201:2: warning: implicit declaration of function ‘ppm_freearray’ [-Wimplicit-function-declaration]
-make: *** [ImageConverter.o] Error 1
-13:23:44 **** Incremental Build of configuration Debug for project NeuralNet ****
-make all 
-Building file: ../ImageConverter.c
-Invoking: Cross GCC Compiler
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-../ImageConverter.c: In function ‘imageToFeature_netpbm’:
-../ImageConverter.c:165:2: error: unknown type name ‘pixval’
-../ImageConverter.c:166:2: error: unknown type name ‘pixel’
-../ImageConverter.c:167:2: error: unknown type name ‘pixel’
-../ImageConverter.c:168:2: error: unknown type name ‘pixel’
-../ImageConverter.c:177:2: warning: implicit declaration of function ‘ppm_readppm’ [-Wimplicit-function-declaration]
-../ImageConverter.c:177:11: warning: assignment makes pointer from integer without a cast [enabled by default]
-../ImageConverter.c:189:26: error: request for member ‘r’ in something not a structure or union
-../ImageConverter.c:191:26: error: request for member ‘g’ in something not a structure or union
-../ImageConverter.c:193:26: error: request for member ‘b’ in something not a structure or union
-../ImageConverter.c:201:2: warning: implicit declaration of function ‘ppm_freearray’ [-Wimplicit-function-declaration]
-make: *** [ImageConverter.o] Error 1
-13:23:58 **** Incremental Build of configuration Debug for project NeuralNet ****
-make all 
-Building file: ../ImageConverter.c
-Invoking: Cross GCC Compiler
-gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-../ImageConverter.c:1:17: fatal error: ppm.h: No such file or directory
-compilation terminated.
-make: *** [ImageConverter.o] Error 1
-13:25:10 **** Incremental Build of configuration Debug for project NeuralNet ****
+14:51:28 **** Clean-only build of configuration Debug for project NeuralNet ****
+make clean 
+rm -rf  ./ImageConverter.o ./NeuralNetworkLearn.o  ./ImageConverter.d ./NeuralNetworkLearn.d  NeuralNet
+ 
+14:51:31 **** Build of configuration Debug for project NeuralNet ****
 make all 
 Building file: ../ImageConverter.c
 Invoking: Cross GCC Compiler
@@ -65,24 +19,12 @@ Invoking: Cross GCC Linker
 gcc -L"/data/home/race/workspace/NeuralNet/lib" -o "NeuralNet"  ./ImageConverter.o ./NeuralNetworkLearn.o   -lnetpbm -lfann
 Finished building target: NeuralNet
  
-13:26:42 **** Incremental Build of configuration Debug for project NeuralNet ****
+14:51:58 **** Incremental Build of configuration Debug for project NeuralNet ****
 make all 
-Building file: ../ImageConverter.c
+Building file: ../NeuralNetworkLearn.c
 Invoking: Cross GCC Compiler
-gcc -I"/data/home/race/workspace/NeuralNet/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-Finished building: ../ImageConverter.c
- 
-Building target: NeuralNet
-Invoking: Cross GCC Linker
-gcc -L"/data/home/race/workspace/NeuralNet/lib" -o "NeuralNet"  ./ImageConverter.o ./NeuralNetworkLearn.o   -lnetpbm -lfann
-Finished building target: NeuralNet
- 
-13:33:30 **** Incremental Build of configuration Debug for project NeuralNet ****
-make all 
-Building file: ../ImageConverter.c
-Invoking: Cross GCC Compiler
-gcc -I"/data/home/race/workspace/NeuralNet/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
-Finished building: ../ImageConverter.c
+gcc -I"/data/home/race/workspace/NeuralNet/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"NeuralNetworkLearn.d" -MT"NeuralNetworkLearn.d" -o "NeuralNetworkLearn.o" "../NeuralNetworkLearn.c"
+Finished building: ../NeuralNetworkLearn.c
  
 Building target: NeuralNet
 Invoking: Cross GCC Linker

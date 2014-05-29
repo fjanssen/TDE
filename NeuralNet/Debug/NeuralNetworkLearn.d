@@ -8,7 +8,8 @@ NeuralNetworkLearn.d: ../NeuralNetworkLearn.c \
  /data/home/race/workspace/NeuralNet/include/fann_internal.h \
  /data/home/race/workspace/NeuralNet/include/fann_train.h \
  /data/home/race/workspace/NeuralNet/include/fann_cascade.h \
- /data/home/race/workspace/NeuralNet/include/fann_io.h
+ /data/home/race/workspace/NeuralNet/include/fann_io.h \
+ ../ImageConverter.h
 
 /data/home/race/workspace/NeuralNet/include/fann.h:
 
@@ -29,3 +30,5 @@ NeuralNetworkLearn.d: ../NeuralNetworkLearn.c \
 /data/home/race/workspace/NeuralNet/include/fann_cascade.h:
 
 /data/home/race/workspace/NeuralNet/include/fann_io.h:
+
+../ImageConverter.h:

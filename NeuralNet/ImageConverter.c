@@ -1,3 +1,10 @@
+/*
+ * ImageConverter.c
+ *
+ *  Created on: May 25, 2014
+ *      Author: Cordt Voigt
+ */
+
 #include <ppm.h>
 
 #include <sys/types.h>
