@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lfann -lnetpbm
+LIBS := -lnetpbm -lfann
 

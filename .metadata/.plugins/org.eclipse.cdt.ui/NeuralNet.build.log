@@ -1,0 +1,15 @@
+13:33:30 **** Incremental Build of configuration Debug for project NeuralNet ****
+make all 
+Building file: ../ImageConverter.c
+Invoking: Cross GCC Compiler
+gcc -I"/data/home/race/workspace/NeuralNet/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"ImageConverter.d" -MT"ImageConverter.d" -o "ImageConverter.o" "../ImageConverter.c"
+Finished building: ../ImageConverter.c
+ 
+Building target: NeuralNet
+Invoking: Cross GCC Linker
+gcc -L"/data/home/race/workspace/NeuralNet/lib" -o "NeuralNet"  ./ImageConverter.o ./NeuralNetworkLearn.o   -lnetpbm -lfann
+Finished building target: NeuralNet
+ 
+
+13:33:31 Build Finished (took 794ms)
+
