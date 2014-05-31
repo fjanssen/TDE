@@ -9,7 +9,7 @@
 #define IMAGECONVERTER_H_
 
 struct featureList * appendFeature(int * feature, int class, struct featureList * currentPosition);
-void createDataset();
+struct featureList* createDataset();
 void printList(struct featureList * fList);
 int * imageToFeature_netpbm(char * filename);
 char * toChar(int n, int mode);

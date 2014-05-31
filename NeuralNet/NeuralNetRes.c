@@ -2,118 +2,77 @@
 #include "floatfann.h"
 #include <string.h>
 #include <stdlib.h>
-#include <NeuralNetRes.h>
+#include "NeuralNetRes.h"
 
-int stringToInt(char a[]) {
-  int c, n;
- 
-  n = 0;
- 
-  for (c = 0; a[c] != '\0'; c++) {
-    n = (int)(n * 10 + (int)a[c] - '0');
-  }
- 
-  return n;
-}
 
-int testNet()
-{
-	const char * test_file_name = "../dataset/val.txt";
-	const char * net_file_name = "tde.net";
-	const char lineSeperator = ' ';
-	int inlen=3072;
-	int testlen=4000;
+int testNet(struct featureList* fList,int testlen, int inCount){
 
-	int maxpos=0,c = 0,i=0,j=0,truehit=0,curpos=1,curstrlen=0, resSign, resSignTrue[testlen];
-	double max=0;
-    fann_type *calc_out;
-    fann_type input[inlen];
+	struct fann *ann;
+	int i,truehit=0;
+	struct classified* tempclass;
 
-	FILE *fp;
+	ann = fann_create_from_file("tde.net");
 
-	char line[128], tempnum[2], curchar;
-	int testdata[testlen][inlen];
+	init(ann);
+printf("---ann created---\n");
 	for(i=0;i<testlen;i++){
-		for(j=0;j<inlen;j++){
-			testdata[i][j] = 0;}}
-		
-	
-	i=0;j=0;
-	fp = fopen(test_file_name,"r");
-
-	//##################build test set and res####################
-	while ( fgets ( line, sizeof line, fp ) != NULL )
-	{
-		curpos = 1;
-		
-		resSignTrue[i] = line[0];
-		curchar = line[curpos];
-		for(j=0;j<inlen;j++){
-			curstrlen = 0;
-			tempnum[0]='\0';
-			tempnum[1]='\0';
-			while(curchar != lineSeperator && curchar != NULL){
-				tempnum[curstrlen] = curchar;
-				curpos++;
-				curchar = line[curpos];
-				curstrlen++;
-			}
-			curpos++;
-			curchar = line[curpos];
-			testdata[i][j] = stringToInt(tempnum);
-		}
-//		printf("Sign ----> %c ", resSignTrue[i]);
-//		printf("data ----> ");
-//		for(int k = 1; k < inlen; k++) {
-//			printf("%i ", testdata[i][k]);
-//        }
-//        printf("\n");
-//		i++;
-//		for(int k = 0; k < 128; k++) {
-//			line[k] = '\0';
-//        }
-	}
-	
-	fclose(fp);
-
-	//##################Network create and res ##################
-    struct fann *ann = fann_create_from_file(net_file_name);
-    int l,m;
-	for(l=0;l<testlen;l++){
-//		for(int q = 0; q < inlen; q++) {
-//				printf("%i ", testdata[l][q]);
-//			}
-//			printf("\n");
-		for(m = 0;m<inlen;m++){
-			input[m] = testdata[l][m+1];
-		}
-//		for(int q = 0; q < inlen; q++) {
-//				printf("%.0f ", input[q]);
-//			}
-//			printf("\n");
-		max=0;
-		maxpos=0;
-		calc_out = fann_run(ann, input);
-		for (c = 0; c < inlen-1; c++){
-			if (calc_out[c] > max){
-				max  = calc_out[c];
-				maxpos = c;
-			}
-		}
-		resSign = maxpos;
-		printf("Found: %c  -- True: %c \n",resSign,resSignTrue[l]);
-		if(resSign == resSignTrue[l]){
+		tempclass = classify(ann,fList->feature,inCount);
+		printf("Found: %i with confidence %f -- True: %i",tempclass->class,tempclass->confidence,fList->class);
+		if(tempclass->class == fList->class){
 			truehit++;
+			printf(" -- HIT \n");
+		}else{
+			printf("\n");
 		}
+		fList = fList->nextFeature;
 	}
 		
-		
-//	for(int i = 0; i < 26; i++) {
-//    //    printf("%.2f ", calc_out[i]);
-//    }
     printf("\n%i\n",truehit);
     double percres = ((double)truehit/(double)testlen)*100.0;
 	printf("%.3f \n",percres);
-    fann_destroy(ann);
+
+	closeNN(ann);
+
     return 0;
 }
+
+void init(struct fann *ann){
+	ann = fann_create_from_file("tde.net");
+}
+
+void closeNN(struct fann *ann){
+	fann_destroy(ann);
+}
+
+/**
+ * classifies the given input feature vector using the given ANN
+ * returns classified struct
+ */
+struct classified* classify(struct fann *ann,int * invec, int inCount){
+	fann_type *calc_out;
+	fann_type input[inCount];
+	struct classified* returnStruct;
+	int i,j, maxpos=0;
+	double max=0.0;
+	returnStruct = malloc(sizeof(struct classified));
+	for(i=0;i<inCount;i++){
+		input[i] = invec[i];
+	}
+
+	calc_out = fann_run(ann, input);
+
+	for (j = 0; j < inCount; j++){
+		if (calc_out[j] > max){
+			max  = calc_out[j];
+			maxpos = j;
+		}
+	}
+	returnStruct->class = maxpos;
+	returnStruct->confidence = max;
+
+	return returnStruct;
+}
+
+
+
+

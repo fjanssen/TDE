@@ -18,7 +18,7 @@
 
 
 struct featureList * appendFeature(int * feature, int class, struct featureList * currentPosition);
-void createDataset();
+struct featureList* createDataset();
 void printList(struct featureList * fList);
 int * imageToFeature_netpbm(char * filename);
 char * toChar(int n, int mode);
@@ -72,7 +72,7 @@ struct featureList * appendFeature(int * feature, int class, struct featureList 
 }
 
 
-void createDataset()
+struct featureList* createDataset()
 {
 	srand(time(NULL));
 	int i, r, selectTest, cFile;
@@ -152,14 +152,15 @@ void createDataset()
 		lastPosition = curPosition;
 	}
 
-	curTestPosition = flTestRoot;
-	lastPosition = curTestPosition;
-	while(curTestPosition->nextFeature != NULL)
-	{
-		curTestPosition = curTestPosition->nextFeature;
-		free(lastPosition);
-		lastPosition = curTestPosition;
-	}
+//	curTestPosition = flTestRoot;
+//	lastPosition = curTestPosition;
+//	while(curTestPosition->nextFeature != NULL)
+//	{
+//		curTestPosition = curTestPosition->nextFeature;
+//		free(lastPosition);
+//		lastPosition = curTestPosition;
+//	}
+	return flTestRoot;
 }
 
 
@@ -345,7 +346,7 @@ void writeFeatureSet(struct featureList * fList, int mode)
 	}
 
 	curFeature = fList;
-	fprintf(f, "%d %d %d\n", nFeatures, FEATURE_VECTOR_SIZE, TRAFFIC_SIGN_CLASSES);
+	fprintf(f, "%d %d %d\n", nFeatures-1, FEATURE_VECTOR_SIZE, TRAFFIC_SIGN_CLASSES);
 
 	while(curFeature != NULL)
 	{
