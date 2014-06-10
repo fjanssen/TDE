@@ -5,14 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../ImageConverter.c \
+../NeuralNetRes.c \
 ../NeuralNetworkLearn.c 
 
 OBJS += \
 ./ImageConverter.o \
+./NeuralNetRes.o \
 ./NeuralNetworkLearn.o 
 
 C_DEPS += \
 ./ImageConverter.d \
+./NeuralNetRes.d \
 ./NeuralNetworkLearn.d 
 
 
