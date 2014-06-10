@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 4 resources" deleteContents="false" description="Delete 4 resources" element1="/NeuralNet/lib/libnetpbm.a" element2="/NeuralNet/lib/libnetpbm.so" element3="/NeuralNet/lib/libnetpbm.so.10" element4="/NeuralNet/lib/libnetpbm.so.10.35" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="4" stamp="1402398382983"/>
+</session>

@@ -5,8 +5,6 @@
  *      Author: Cordt Voigt
  */
 
-#include <ppm.h>
-
 #include <sys/types.h>
 #include <dirent.h>
 #include <stdio.h>
@@ -16,6 +14,8 @@
 #include <time.h>
 #include <stdlib.h>
 
+#include <opencv2/core/core_c.h>
+#include <opencv2/highgui/highgui_c.h>
 
 struct featureList * appendFeature(int * feature, int class, struct featureList * currentPosition);
 struct featureList* createDataset();
@@ -166,47 +166,40 @@ struct featureList* createDataset()
 
 int * imageToFeature_netpbm(char * filename)
 {
-	char * mode = "rb";
-	FILE * fp = 0;
-	int colsP = 0;
-	int rowsP = 0;
-	pixval maxvalP = 0;
-	pixel ** pixArray;
-	pixel ** oneArray;
-	pixel * onePixel;
-	int i, j;
-
-	fp = fopen(filename, mode);
-	if(fp == NULL)
-	{
-		printf("Filename \"%s\" could not be found.\n", filename);
-		return NULL;
-	}
-	pixArray =  ppm_readppm(fp, &colsP, &rowsP, &maxvalP);
 	int * feature = 0;
-	feature = malloc(rowsP * colsP * 3 * sizeof(int) + sizeof(int));
-	int * curFeature = feature;
-	oneArray = pixArray;
-	for(i = 0; i < rowsP; i++)
-	{
-		onePixel = (*oneArray);
-		oneArray++;
+	IplImage* img = 0;
+	int height,width,step,channels;
+	uchar *data;
+	int i,j,k;
 
-		for(j = 0; j < colsP; j++)
-		{
-			*curFeature = onePixel->r;
-			curFeature++;
-			*curFeature = onePixel->g;
-			curFeature++;
-			*curFeature = onePixel->b;
-			curFeature++;
-			onePixel++;
-		}
+	// load an image
+	img = cvLoadImage(filename, CV_LOAD_IMAGE_COLOR);
+	if(!img){
+		printf("Could not load image file: %s\n", filename);
+		exit(0);
 	}
+
+	// get the image data
+	height    = img->height;
+	width     = img->width;
+	step      = img->widthStep;
+	channels  = img->nChannels;
+	data      = (uchar *)img->imageData;
+
+	feature = malloc(height * width * channels * sizeof(int) + sizeof(int));
+	int * curFeature = feature;
+
+	for(i = 0;i < height; i++) for(j = 0; j < width; j++) for(k = 0; k < channels; k++) {
+		*curFeature = data[i*step+j*channels+k];
+		curFeature++;
+	}
+
 	// Determines end of sequence
 	*curFeature = -1;
 
-	ppm_freearray(pixArray, rowsP);
+	// release the image
+	cvReleaseImage(&img );
+
 	return feature;
 }
 

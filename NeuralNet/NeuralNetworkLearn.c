@@ -2,8 +2,6 @@
 #include "ImageConverter.h"
 #include "NeuralNetRes.h"
 
-
-
 int main()
 {
 	struct featureList* fList;

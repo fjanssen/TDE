@@ -1,15 +1,11 @@
-14:51:58 **** Incremental Build of configuration Debug for project NeuralNet ****
+13:08:16 **** Incremental Build of configuration Debug for project NeuralNet ****
 make all 
-Building file: ../NeuralNetworkLearn.c
-Invoking: Cross GCC Compiler
-gcc -I"/data/home/race/workspace/NeuralNet/include" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"NeuralNetworkLearn.d" -MT"NeuralNetworkLearn.d" -o "NeuralNetworkLearn.o" "../NeuralNetworkLearn.c"
-Finished building: ../NeuralNetworkLearn.c
- 
 Building target: NeuralNet
 Invoking: Cross GCC Linker
-gcc -L"/data/home/race/workspace/NeuralNet/lib" -o "NeuralNet"  ./ImageConverter.o ./NeuralNetworkLearn.o   -lnetpbm -lfann
+gcc -L"/data/home/race/workspace/NeuralNet/lib" -o "NeuralNet"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./ImageConverter.o ./NeuralNetRes.o ./NeuralNetworkLearn.o   -lfann -lopencv_core -lopencv_imgproc -lopencv_highgui
+/usr/bin/ld: warning: libopencv_core.so.2.4, needed by /usr/local/lib/libopencv_highgui.so, may conflict with libopencv_core.so.2.3
 Finished building target: NeuralNet
  
 
-14:51:58 Build Finished (took 510ms)
+13:08:17 Build Finished (took 1s.658ms)
 
